@@ -4,20 +4,10 @@ import com.hitema.intro.models.Country;
 
 import java.util.List;
 
-/**
- * Interface CRUD sur les Country
- */
 public interface CountryService {
-    // C reate
-     Country create(Country country) ;
-    // R read
-     Country read(Long id);
-
-    // U pdate
-    Country update(Country country) ;
-    // D elete
+    Country create(Country country);
+    Country read(Long id);
+    Country update(Country country);
     boolean delete(Long id);
-
-    List<Country> readAll() ;
-
+    List<Country> readAll();
 }

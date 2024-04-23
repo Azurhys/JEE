@@ -2,16 +2,14 @@ package com.hitema.intro.services;
 
 import com.hitema.intro.models.Country;
 import com.hitema.intro.repositories.CountryRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class CountryServiceImpl implements CountryService{
+public class CountryServiceImpl implements CountryService {
 
-    private static final Logger log = LoggerFactory.getLogger(CountryServiceImpl.class);
     private CountryRepository repository;
 
     public CountryServiceImpl(CountryRepository repository) {
@@ -20,6 +18,9 @@ public class CountryServiceImpl implements CountryService{
 
     @Override
     public Country create(Country country) {
+        if (country.getLastUpdate() == null) {
+            country.setLastUpdate(LocalDateTime.now());
+        }
         return repository.save(country);
     }
 
@@ -36,7 +37,7 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public boolean delete(Long id) {
         repository.deleteById(id);
-        return ( read(id) == null ) ;
+        return ( read(id) == null );
     }
 
     @Override
